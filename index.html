@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Score Tracker</title>
+    <style>
+        /* Inline CSS for responsiveness and styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .love-button {
+            background-color: #ff4d4d;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Love Score Tracker</h1>
+        <button class="love-button" onclick="increaseLoveScore('V_LOVE')">V_LOVE</button>
+        <button class="love-button" onclick="increaseLoveScore('R_LOVE')">R_LOVE</button>
+        <p>V_LOVE Score: <span id="vLoveScore">0</span></p>
+        <p>R_LOVE Score: <span id="rLoveScore">0</span></p>
+    </div>
+
+    <script>
+        // Inline JavaScript for love score functionality
+        let vLoveScore = parseInt(localStorage.getItem('vLoveScore')) || 0;
+        let rLoveScore = parseInt(localStorage.getItem('rLoveScore')) || 0;
+
+        function increaseLoveScore(user) {
+            const enteredPassword = prompt(`Enter your password for ${user}:`);
+            if (enteredPassword) {
+                if (user === 'V_LOVE' && enteredPassword === 'baccha') {
+                    vLoveScore++;
+                    document.getElementById('vLoveScore').textContent = vLoveScore;
+                    localStorage.setItem('vLoveScore', vLoveScore);
+                } else if (user === 'R_LOVE' && enteredPassword === 'crazy') {
+                    rLoveScore++;
+                    document.getElementById('rLoveScore').textContent = rLoveScore;
+                    localStorage.setItem('rLoveScore', rLoveScore);
+                } else {
+                    alert('Invalid password. Try again.');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
